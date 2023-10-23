@@ -1,0 +1,50 @@
+---
+title: "markdown_to_ams example"
+filters:
+  - markdown_to_ams
+format:
+  html:
+    include-in-header:
+      text: |
+        <script>
+        MathJax = {
+            tex: {
+                tags: 'ams'  // should be 'ams', 'none', or 'all'
+            }
+        };
+        </script>
+---
+
+Inline math is unchanged: $1 = 1$
+
+Display math is transformed to equation by default:
+$$
+2 = 2
+$$
+
+Display math with the nextblock symbol `&`  is transformed to align (alternating right/left aligned):
+
+- Example 1:
+  $$
+  3 &= 3 \\
+  4+0 &= 0+4
+  $$
+
+- Example 2:
+
+  $$
+  5 &= 5
+  $$
+
+Display math with newline symbol `\\` and no nextblock gets transformed to gather (centered):
+$$
+6 = 6 \\
+0+7 = 7
+$$
+
+Manually specify an environment name by inputting it after the initial `$$ `. Here is an example of a `multline` environment for a long equation. NB: this example renders poorly on both pdf and html.
+
+$$ {multline}
+p(x) = 3x^6 + 14x^5y + 590x^4y^2 + 19x^3y^3\\ 
+- 12x^2y^4 - 12xy^5 + 2y^6 - a^3b^3
+$$
